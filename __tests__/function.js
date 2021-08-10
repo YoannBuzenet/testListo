@@ -1,10 +1,5 @@
 const { isInclusDansPeriode } = require("../function");
 
-Date.prototype.addHours = function (h) {
-  this.setHours(this.getHours() + h);
-  return this;
-};
-
 test("Function should throw an error", () => {
   expect(isInclusDansPeriode).toThrow("Missing Argument absence");
 });
@@ -12,13 +7,6 @@ test("Function should throw an error", () => {
 test("Date included in current period : Function should return true", () => {
   const oneHourFromNow = new Date();
   oneHourFromNow.setHours(oneHourFromNow.getHours() + 1);
-
-  console.log("now", new Date().getTime());
-  console.log("ok", oneHourFromNow.getTime());
-  console.log(
-    "now < one hour from now",
-    new Date().getTime() < oneHourFromNow.getTime()
-  );
 
   expect(
     isInclusDansPeriode({
