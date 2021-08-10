@@ -8,8 +8,6 @@ interface Period {
 function isInclusDansPeriode(absence: Period) {
   const currentPeriod = buildCurrentPeriod();
 
-  console.log("voici notre période courante", currentPeriod);
-
   // Absence is contained in the current period
   if (
     absence.beginningDate.getTime() >= currentPeriod.beginningDate.getTime() &&
@@ -18,9 +16,21 @@ function isInclusDansPeriode(absence: Period) {
     return true;
   }
 
-  // We must also check if absence date cover 100% of current period dates
+  // Absence is partly contained in the current period
+  else if (
+    (absence.beginningDate.getTime() >= currentPeriod.beginningDate.getTime() &&
+      absence.beginningDate.getTime() <= currentPeriod.endingDate.getTime()) ||
+    (absence.endingDate.getTime() >= currentPeriod.beginningDate.getTime() &&
+      absence.endingDate.getTime() <= currentPeriod.endingDate.getTime())
+  ) {
+    return true;
+  }
 
-  return true;
+  // We must also check if absence date cover 100% of current period dates
+  else if ("TODO") {
+  }
+
+  return false;
 }
 
 isInclusDansPeriode({ beginningDate: new Date(), endingDate: new Date() });
