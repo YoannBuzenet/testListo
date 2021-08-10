@@ -6,6 +6,10 @@ interface Period {
 }
 
 function isInclusDansPeriode(absence: Period) {
+  if (absence === undefined) {
+    throw "Missing Argument absence";
+  }
+
   const currentPeriod = buildCurrentPeriod();
 
   // Absence is contained in the current period
