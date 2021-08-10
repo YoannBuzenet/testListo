@@ -8,3 +8,5 @@ npm install
 
 Test the program :
 npm test
+
+# The main function is in function.ts
