@@ -26,11 +26,19 @@ function isInclusDansPeriode(absence: Period) {
     return true;
   }
 
-  // We must also check if absence date cover 100% of current period dates
-  else if ("TODO") {
+  // Absence wraps completely current period
+  else if (
+    absence.beginningDate.getTime() <= currentPeriod.beginningDate.getTime() &&
+    absence.endingDate.getTime() >= currentPeriod.endingDate.getTime()
+  ) {
+    return true;
   }
 
   return false;
 }
 
-isInclusDansPeriode({ beginningDate: new Date(), endingDate: new Date() });
+console.log(
+  isInclusDansPeriode({ beginningDate: new Date(), endingDate: new Date() })
+);
+
+export { isInclusDansPeriode };
