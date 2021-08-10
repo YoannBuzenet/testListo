@@ -10,8 +10,16 @@ function isInclusDansPeriode(absence: Period) {
 
   console.log("voici notre période courante", currentPeriod);
 
-  console.log("prout");
-  console.log("voilà notre absence : ", absence);
+  // Absence is contained in the current period
+  if (
+    absence.beginningDate.getTime() >= currentPeriod.beginningDate.getTime() &&
+    absence.endingDate.getTime() <= currentPeriod.endingDate.getTime()
+  ) {
+    return true;
+  }
+
+  // We must also check if absence date cover 100% of current period dates
+
   return true;
 }
 
