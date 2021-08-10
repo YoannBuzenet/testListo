@@ -6,9 +6,8 @@ exports.buildCurrentPeriod = exports.getFirstDayOfNextMonthInUTC = exports.getSt
  * @return {Date}
  */
 var getStartDateOfCurrentMonthInUTC = function () {
-    var date = new Date(), y = date.getFullYear(), m = date.getMonth();
-    var firstDay = new Date(y, m, 1);
-    var dateStartOfCurrentMonthUTC = Date.UTC(firstDay.getUTCFullYear(), firstDay.getUTCMonth(), firstDay.getUTCDate(), firstDay.getUTCHours(), firstDay.getUTCMinutes(), firstDay.getUTCSeconds());
+    var date = new Date(Date.now());
+    var dateStartOfCurrentMonthUTC = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), 1, 0, 0, 0);
     return new Date(dateStartOfCurrentMonthUTC);
 };
 exports.getStartDateOfCurrentMonthInUTC = getStartDateOfCurrentMonthInUTC;
@@ -17,12 +16,17 @@ exports.getStartDateOfCurrentMonthInUTC = getStartDateOfCurrentMonthInUTC;
  * @return {Date}
  */
 var getFirstDayOfNextMonthInUTC = function () {
-    var date = new Date();
-    var lastDay = new Date(date.getFullYear(), date.getUTCMonth() + 1, 0);
-    var dateLastDayOfMonthUTC = Date.UTC(lastDay.getUTCFullYear(), lastDay.getUTCMonth(), lastDay.getUTCDate() + 2, lastDay.getUTCHours(), lastDay.getUTCMinutes(), lastDay.getUTCSeconds() - 1);
+    var date = new Date(Date.now());
+    var dateLastDayOfMonthUTC = Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + 1, 2, //We start from day 2
+    0, 0, -1 // Midnight excluded, to get full day One
+    );
     return new Date(dateLastDayOfMonthUTC);
 };
 exports.getFirstDayOfNextMonthInUTC = getFirstDayOfNextMonthInUTC;
+/**
+ * @summary Create an object representing the current Period
+ * @return {Period}
+ */
 var buildCurrentPeriod = function () {
     var beginningDateCurrentPeriod = getStartDateOfCurrentMonthInUTC();
     var endingDateCurrentPeriod = getFirstDayOfNextMonthInUTC();
