@@ -10,6 +10,9 @@ function isInclusDansPeriode(absence: Period) {
     throw "Missing Argument absence";
   }
 
+  if (absence.beginningDate.getTime() >= absence.endingDate.getTime()) {
+    throw "Beginning Date cannot be superior or equal to Ending Date";
+  }
   const currentPeriod = buildCurrentPeriod();
 
   // Absence is contained in the current period
@@ -40,9 +43,5 @@ function isInclusDansPeriode(absence: Period) {
 
   return false;
 }
-
-console.log(
-  isInclusDansPeriode({ beginningDate: new Date(), endingDate: new Date() })
-);
 
 export { isInclusDansPeriode };

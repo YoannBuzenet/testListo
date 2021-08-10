@@ -6,6 +6,9 @@ function isInclusDansPeriode(absence) {
     if (absence === undefined) {
         throw "Missing Argument absence";
     }
+    if (absence.beginningDate.getTime() >= absence.endingDate.getTime()) {
+        throw "Beginning Date cannot be inferior or equal to Ending Date";
+    }
     var currentPeriod = utils_1.buildCurrentPeriod();
     // Absence is contained in the current period
     if (absence.beginningDate.getTime() >= currentPeriod.beginningDate.getTime() &&
@@ -27,5 +30,4 @@ function isInclusDansPeriode(absence) {
     return false;
 }
 exports.isInclusDansPeriode = isInclusDansPeriode;
-console.log(isInclusDansPeriode({ beginningDate: new Date(), endingDate: new Date() }));
 //# sourceMappingURL=function.js.map
