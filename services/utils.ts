@@ -1,3 +1,7 @@
+/**
+ * @summary Create a Date of beginning of current period : first day of the month, midnight included
+ * @return {Date}
+ */
 const getStartDateOfCurrentMonthInUTC = () => {
   var date = new Date(),
     y = date.getFullYear(),
@@ -16,6 +20,11 @@ const getStartDateOfCurrentMonthInUTC = () => {
   return new Date(dateStartOfCurrentMonthUTC);
 };
 
+/**
+ * @summary Create a Date of end of current period : first day of the next month, midnight excluded
+ * @return {Date}
+ */
+
 const getFirstDayOfNextMonthInUTC = () => {
   var date = new Date();
   var lastDay = new Date(date.getFullYear(), date.getUTCMonth() + 1, 0);
@@ -32,4 +41,22 @@ const getFirstDayOfNextMonthInUTC = () => {
   return new Date(dateLastDayOfMonthUTC);
 };
 
-export { getStartDateOfCurrentMonthInUTC, getFirstDayOfNextMonthInUTC };
+/**
+ * @summary Create an object representing the current Period
+ * @return {Period}
+ */
+const buildCurrentPeriod = () => {
+  let beginningDateCurrentPeriod = getStartDateOfCurrentMonthInUTC();
+  let endingDateCurrentPeriod = getFirstDayOfNextMonthInUTC();
+
+  return {
+    beginningDate: beginningDateCurrentPeriod,
+    endingDate: endingDateCurrentPeriod,
+  };
+};
+
+export {
+  getStartDateOfCurrentMonthInUTC,
+  getFirstDayOfNextMonthInUTC,
+  buildCurrentPeriod,
+};

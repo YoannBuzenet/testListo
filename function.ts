@@ -1,20 +1,15 @@
+import { buildCurrentPeriod } from "./services/utils";
+
 interface Period {
   beginningDate: Date;
   endingDate: Date;
 }
 
-function buildCurrentPeriod() {
-  let beginningDateCurrentPeriod;
-
-  let endingDateCurrentPeriod;
-
-  return {
-    beginningDate: beginningDateCurrentPeriod,
-    endingDate: endingDateCurrentPeriod,
-  };
-}
-
 function isInclusDansPeriode(absence: Period) {
+  const currentPeriod = buildCurrentPeriod();
+
+  console.log("voici notre période courante", currentPeriod);
+
   console.log("prout");
   console.log("voilà notre absence : ", absence);
   return true;
