@@ -17,15 +17,19 @@ test("Date included in current period : Function should return true", () => {
 });
 
 test("Date way before current period : Function should return false", () => {
-  isInclusDansPeriode({
-    beginningDate: new Date("1950"),
-    endingDate: new Date("1960"),
-  });
+  expect(
+    isInclusDansPeriode({
+      beginningDate: new Date("1950"),
+      endingDate: new Date("1960"),
+    })
+  ).toBe(false);
 });
 
 test("Date partly included in current period : Function should return true", () => {
-  isInclusDansPeriode({
-    beginningDate: new Date(new Date()),
-    endingDate: new Date("2022"),
-  });
+  expect(
+    isInclusDansPeriode({
+      beginningDate: new Date(new Date()),
+      endingDate: new Date("2022"),
+    })
+  ).toBe(true);
 });
